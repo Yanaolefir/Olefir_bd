@@ -1,0 +1,60 @@
+insert into Airlines values('s7','Siberia');
+insert into Airlines values('su','Aeroflot');
+insert into Airlines values('u6','UralAirlines');
+insert into Airlines values('n4','NordwindAirlines');
+insert into Airlines values('ut','UTair');
+
+insert into Manufacturers values('a320','airbus');
+insert into Manufacturers values('a350','airbus');
+insert into Manufacturers values('b737','boeing');
+insert into Manufacturers values('b747','boeing');
+insert into Manufacturers values('a380','airbus');
+
+
+insert into Status values(1,'Silver');
+insert into Status values(2,'Gold');
+insert into Status values(3,'Platinum');
+
+insert into Airplanes values('VQ-BAS','a320',150,6);
+insert into Airplanes values('VQ-TOR','a350',280,20);
+insert into Airplanes values('VQ-WER','b737',160,8);
+insert into Airplanes values('VQ-MAR','a320',152,4);
+insert into Airplanes values('VQ-LOK','b747',350,25);
+
+
+insert into Routes values(1,'LED-DME');
+insert into Routes values(2,'DME-LED');
+insert into Routes values(3,'SVX-VKO');
+insert into Routes values(4,'SVO-LED');
+insert into Routes values(5,'LED-VVO');
+
+
+insert into Ticket_type values(1,'Non_return');
+insert into Ticket_type values(2,'Free_return');
+insert into Ticket_type values(3,'50_return');
+
+insert into Flights values(111,'LED','DME','10.20','11.40','s7','1234567',1000,2000);
+insert into Flights values(222,'SVO','LED','05.30','06.50','su','1234567',2500,5000);
+insert into Flights values(333,'LED','VVO','01.20','10.40','n4','1234567',10000,20000);
+
+insert into Shedule values(1,'2015-11-21',111,'LED','DME','10.20','11.40','VQ-BAS');
+insert into Shedule values(2,'2015-11-21',222,'SVO','LED','05.30','06.50','VQ-LOK');
+insert into Shedule values(3,'2015-11-21',333,'LED','VVO','01.20','10.40','VQ-TOR');
+
+
+insert into Tickets values(1,000001,'Ivanov','Ivanov',1,1000,1,'1');
+insert into Tickets values(2,000002,'Petrov','Petrov',1,1000,1,'1');
+insert into Tickets values(3,000003,'Sidorov','Sidorov',2,2500,3,'4');
+insert into Tickets values(4,000004,'Pupkin','Pupkin',2,5000,3,'4');
+insert into Tickets values(5,000005,'Belov','Belov',3,10000,2,'5');
+
+insert into Return values(1,000001,1000,'2012-10-10');
+
+insert into Priority values(1,'Ivanov',1,1000);
+insert into Priority values(2,'Petrov',2,5000);
+insert into Priority values(3,'Sidorov',3,10000);
+insert into Priority values(4,'Pupkin',1,1200);
+insert into Priority values(5,'Belov',2,5500);
+
+
+

@@ -1,5 +1,3 @@
-create database 'D:\aviasales.fdb' user 'SYSDBA' password 'masterkey';
-
 CREATE TABLE TICKETS (
     ID           INTEGER  primary key,
     TICKET_ID    INTEGER unique,

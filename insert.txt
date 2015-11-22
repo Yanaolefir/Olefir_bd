@@ -1,5 +1,3 @@
-connect 'D:\aviasales.fdb' user 'SYSDBA' password 'masterkey';
-
 insert into Airlines values('s7','Siberia');
 insert into Airlines values('su','Aeroflot');
 insert into Airlines values('u6','UralAirlines');

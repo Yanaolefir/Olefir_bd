@@ -1,12 +1,3 @@
-connect 'D:\aviasales.fdb' user 'SYSDBA' password 'masterkey';
-CREATE TABLE PRIORITY (
-    ID         INTEGER primary key,
-    PAX        VARCHAR(20),
-    STATUS_ID  INTEGER,
-    MILES      INTEGER
-);
-
-
 CREATE TABLE ROUTES (
     ROUTE_ID  VARCHAR(10) primary key,
     ROUTE     VARCHAR(7)
@@ -29,6 +20,13 @@ CREATE TABLE PRIORITY (
     PAX        VARCHAR(20),
     STATUS_ID  INTEGER,
     MILES      INTEGER
+);
+
+CREATE TABLE RETURN (
+    ID           INTEGER primary key,
+    TICKET_ID    INTEGER,
+    PRICE        INTEGER,
+    RETURN_DATE  DATE
 );
 
 

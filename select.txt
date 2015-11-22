@@ -1,0 +1,23 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+create view TicketsSel as select * from tickets;
+create view SheduleSel as select * from shedule;
+create view FlightsSel as select * from flights;
+create view AirlinesSel as select * from airlines;
+create view AirplanesSel as select * from airplanes;
+create view Ticket_typeSel as select * from ticket_type;
+create view RoutesSel as select * from routes;
+create view ManufacturersSel as select * from manufacturers;
+create view ReturnSel as select * from return;
+create view PrioritySel as select * from priority;
+create view StatusSel as select * from status;
+create view selectIvanov as select * from Priority where Pax like 'Ivanov';
+create view selectQE as select * from airplanes where Quant_bus between 0 and 10;
+create view selectShed as select * from Shedule where Shed_id  in (2,3);
+create view selectSortPaxMiles as select * from Priority order by Pax asc, Miles asc;
+create view selectAircraftNumCompany as select Airplanes.Aircraft_Num as Aircraft_Num,
+    Manufacturers.company as Company from Airplanes, Manufacturers where Airplanes.Aircraft_type = Manufacturers.Aircraft_type;
+create view selectFlightsCodeName as select Flights.Number as Number, Flights.Code as Code, Airlines.Name as Name from Flights,Airlines where Flights.Code = Airlines.Code;
+create view selectShedCount as select Tickets.shed_id as Shed_id,
+    COUNT(Tickets.Shed_id) as Counts from Tickets group by Tickets.Shed_id;
+create view selectUnusedAirlines as select * from Airlines where Code
+    not in (select Code from Flights);

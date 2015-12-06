@@ -1,6 +1,0 @@
-connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
-create view top5routes as select first 5 Routes.Route, 
-
-    COUNT(Tickets.Route_id) as Sell from Routes, Tickets
-  where Tickets.Route_id = Routes.route_id group by
-    Routes.Route  order by Sell desc;

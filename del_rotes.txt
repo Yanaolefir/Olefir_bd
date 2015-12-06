@@ -1,4 +1,0 @@
-set term ^;
-create procedure del_routes as begin 
-delete from Routes where Route_id not in (select Route_id from Tickets);
-end ^;

@@ -1,0 +1,4 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+create view top5r as select first 5 Shedule.departure, Shedule.arrival,
+COUNT (Tickets.shed_id) as Sell from Tickets, Shedule where Tickets.shed_id=Shedule.shed_id
+group by Shedule.departure, Shedule.arrival order by Sell desc ;

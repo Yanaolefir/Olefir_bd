@@ -1,0 +1,88 @@
+set term ^;
+create procedure insert_airlines ( i varchar(2), d varchar(20))
+as begin
+    insert into Airlines (Code, Name)
+    values (:i, :d);
+end ^
+
+create procedure insert_manufacturers ( i varchar(7), d varchar(10))
+as begin
+    insert into Manufacturers (Aircraft_type, Company)
+    values (:i, :d);
+end ^
+
+create procedure insert_ttype ( i integer, d varchar(15))
+as begin
+    insert into Ticket_type (Ticket_type_id, Ticket_type)
+    values (:i, :d);
+end ^
+
+
+create procedure insert_routes ( i varchar(10), d varchar(7))
+as begin
+    insert into Routes (Route_id, Route)
+    values (:i, :d);
+end ^
+
+create procedure insert_flights ( i integer, d varchar(3), s varchar(3),t varchar(5),v varchar(5),q varchar(2),c varchar(7), w integer, b integer)
+as begin
+    insert into Flights (Number, Departure, Arrival, Time_dep, Time_arr, Code, Day_week, Price_ec, Price_bus)
+    values (:i, :d, :s, :t, :v, :q, :c, :w, :b);
+end ^
+
+create procedure insert_airlplanes ( i varchar(7), d varchar(7), w integer, b integer)
+as begin
+    insert into Airplanes (Aircraft_num, Aircraft_type, Quant_ec, Quant_bus)
+    values (:i, :d, :w, :b);
+end ^
+
+create procedure insert_shedule ( i integer, d date, s integer, t varchar(3),
+v varchar(3),q varchar(5),c varchar(5), w varchar(7))
+as begin
+    insert into Shedule (Shed_id, Date_fl, Number, Departure, Arrival,
+    Time_dep, Time_arr, Aircraft_num)
+    values (:i, :d, :s, :t, :v, :q, :c, :w);
+end ^
+
+create procedure insert_tickets ( i integer, d integer, s varchar(20), t varchar(20),
+v integer,q integer,c integer, w varchar(10))
+as begin
+    insert into Tickets (Id, Ticket_id, Byer, Pax, Shed_id, Price, Ticket_type_id, Route_id)
+    values (:i, :d, :s, :t, :v, :q, :c, :w);
+end ^
+
+create procedure insert_status ( i integer, d varchar(15))
+as begin
+    insert into Status (Status_id, Status)
+    values (:i, :d);
+end ^
+
+create procedure insert_return ( i integer, d integer, v integer, s date)
+as begin
+    insert into Return (Id, Ticket_id, Price, Return_date)
+    values (:i, :d, :v, :s);
+end ^
+
+create procedure insert_priority ( i integer, d varchar(20), v integer, s integer)
+as begin
+    insert into Priority (Id, Pax, Status_id, Miles)
+    values (:i, :d, :v, :s);
+end ^
+
+
+set term ^;
+create procedure update_priority (miles int) as
+begin
+  update Priority set Miles = :miles where Priority.Status_id > 2;
+end^
+
+create procedure del_price(i int) as
+begin
+    delete from Tickets where Ticket_type_id = :i and
+    Price = (select MIN(Price) from Tickets where Ticket_type_id = :i);
+end ^
+
+create procedure del_airplanes as
+begin
+    delete from Airplanes where Aircraft_num not in (select Aircraft_num from Shedule);
+end ^

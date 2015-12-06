@@ -1,0 +1,4 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+create view topAirl as select Airlines.Name, SUM(Tickets.Price) AS QQQ from Flights,Shedule,Tickets, Airlines
+where (Tickets.Shed_id=Shedule.Shed_id) and (Shedule.Number=Flights.Number) and (Airlines.Code=Flights.Code)
+group by Airlines.Name order by QQQ desc ;

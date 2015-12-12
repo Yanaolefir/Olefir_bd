@@ -1,0 +1,8 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+
+create procedure add_miles(qmiles int, qpaxid int)
+as
+begin
+update priority set Miles = :qmiles
+where :qpaxid=priority.id;
+end;

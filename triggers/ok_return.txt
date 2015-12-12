@@ -1,0 +1,28 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+create exception error1 'Sorry,Your ticket is non-return';
+drop trigger ok_return;
+
+create trigger ok_return for Returntick before insert
+
+as
+
+declare variable ttype int;
+declare variable tprice float;
+declare variable fprice5 float;
+
+begin
+
+tprice = new.price;
+
+select tickets.ticket_type_id from tickets
+    where tickets.ticket_id=new.ticket_id
+    into :ttype;
+    fprice5=tprice*0.5;
+
+    if (ttype=1) then exception error1;
+    else if (ttype=2) then new.price=:tprice;
+   else if (ttype=3) then new.price= cast (:fprice5 as int);
+end;
+
+
+

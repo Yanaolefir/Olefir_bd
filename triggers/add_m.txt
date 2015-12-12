@@ -1,0 +1,23 @@
+connect 'D:\bd\avia.fdb' user 'SYSDBA' password 'masterkey';
+drop trigger add_miles;
+
+create trigger add_miles for tickets after insert
+as
+
+declare variable tmiles int;
+declare variable tstatus int;
+declare variable tpaxid int;
+
+begin
+select priority.miles, priority.status_id, priority.id from priority
+where
+priority.pax = new.pax
+into :tmiles, :tstatus, :tpaxid;
+
+
+if (tstatus=1) then tmiles=tmiles+1000;
+if (tstatus=2) then tmiles=tmiles+2000;
+if (tstatus=3) then tmiles=tmiles+3000;
+
+execute procedure add_miles (tmiles, tpaxid);
+end

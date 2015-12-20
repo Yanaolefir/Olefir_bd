@@ -1,0 +1,17 @@
+connect 'D:\bd\new\avia.fdb' user 'SYSDBA' password 'masterkey';
+
+create procedure DEL_UNPOP_ROUTES (
+    MIN_DATE date,
+    MAX_DATE date)
+as
+begin
+
+update shedule set DEL_R = 1
+where shedule.date_fl between :min_date and :max_date
+and   shedule.shed_id in
+(select shed_id from (select first 5
+Shedule.shed_id,
+COUNT (Tickets.shed_id) as Sell from Tickets, Shedule where Tickets.shed_id=Shedule.shed_id
+group by
+Shedule.shed_id order by Sell asc));
+end

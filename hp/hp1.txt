@@ -1,0 +1,23 @@
+connect 'D:\bd\last.fdb' user 'SYSDBA' password 'masterkey';
+drop procedure routes_attention;
+create procedure routes_attention(min_date date, max_date date)
+returns (routeid integer, depar varchar(25), ctickets integer)
+as
+
+begin
+    for
+    select first 5 routes_tickets.route_id, routes.route,
+    (COUNT(routes_tickets.ticket_id)/2) as Sell
+        from tickets, routes_tickets, routes, shedule
+
+            where
+            routes.route_id = routes_tickets.route_id and
+            tickets.ticket_id = routes_tickets.ticket_id and
+            shedule.date_fl between :min_date and :max_date
+
+
+group by routes_tickets.route_id, routes.route order by Sell desc
+
+into :routeid, :depar, :ctickets
+do suspend;
+end
